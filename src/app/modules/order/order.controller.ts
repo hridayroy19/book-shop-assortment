@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Request, Response } from 'express';
 import { OrderServer } from './order.service';
 
@@ -6,15 +7,14 @@ const crateOrder = async (req: Request, res: Response) => {
     const body = req.body;
     const result = await OrderServer.crateOrder(body);
     res.json({
-      success: true,
+      status: true,
       message: ' Order crated successfully',
       data: result,
     });
-  } catch (error) {
+  } catch (error: any) {
     res.json({
-      success: false,
-      message: 'somting went wrong',
-      error,
+      status: false,
+      message: error.message || 'Something went wrong',
     });
   }
 };
@@ -23,9 +23,9 @@ const getOrder = async (req: Request, res: Response) => {
   try {
     const result = await OrderServer.getOrder();
     res.json({
-      success: true,
-      message: ' get data successfully',
-      data: result,
+      status: true,
+      message: ' Revenue calculated successfully',
+      result,
     });
   } catch (error) {
     res.json({
@@ -56,9 +56,9 @@ const singleGetOrder = async (req: Request, res: Response) => {
 
 const updateOrder = async (req: Request, res: Response) => {
   try {
-    const id = req.params.id;
+    const orderId = req.params.orderId;
     const body = req.body;
-    const result = await OrderServer.orderUpdate(id, body);
+    const result = await OrderServer.orderUpdate(orderId, body);
     res.json({
       success: true,
       message: ' Order Update successfully',
@@ -75,13 +75,12 @@ const updateOrder = async (req: Request, res: Response) => {
 
 const deletGetOrder = async (req: Request, res: Response) => {
   try {
-    const id = req.params.id;
-    const body = req.body;
-    const result = await OrderServer.deletOrder(id, body);
+    const { orderId } = req.params;
+    const result = await OrderServer.deletOrder(orderId);
     res.json({
       success: true,
       message: ' Order deleted successfully',
-      data: result,
+      result,
     });
   } catch (error) {
     res.json({

@@ -11,7 +11,7 @@ app.use(cors());
 //book router
 app.use('/api/products', BookRouter);
 //order router
-app.use('/api/orders', orderRouter);
+app.use('/api', orderRouter);
 
 app.get('/', (req: Request, res: Response) => {
   res.send('Server site is running');

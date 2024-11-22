@@ -3,8 +3,9 @@ import { orderController } from './order.controller';
 
 const orderRouter = Router();
 
-orderRouter.post('/', orderController.crateOrder);
-orderRouter.get('/', orderController.getOrder);
+orderRouter.post('/orders', orderController.crateOrder);
+orderRouter.get('/orders/revenue', orderController.getOrder);
+
 orderRouter.get('/:orderId', orderController.singleGetOrder);
 orderRouter.put('/:orderId', orderController.updateOrder);
 orderRouter.delete('/:orderId', orderController.deletGetOrder);

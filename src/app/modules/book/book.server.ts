@@ -21,7 +21,7 @@ const getSingleBookDB = async (id: string) => {
 //deleted data in database
 const deleteBookDB = async (id: string) => {
   const rsult = await Book.findByIdAndDelete(id);
-  return rsult
+  return rsult;
 };
 
 //update data in database
