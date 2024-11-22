@@ -11,6 +11,3 @@ export type TBook = {
   inStock: boolean;
 };
 
-// export interface BookMedel extends Model<TBook> {
-//     isBookExistis(id:string): Promise<TBook | null>;
-// }

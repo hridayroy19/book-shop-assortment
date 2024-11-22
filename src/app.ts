@@ -8,8 +8,9 @@ import orderRouter from './app/modules/order/order.router';
 app.use(express.json());
 app.use(cors());
 
-// app.use("/api/v1",orderRouter)
+//book router
 app.use('/api/products', BookRouter);
+//order router
 app.use('/api/orders', orderRouter);
 
 app.get('/', (req: Request, res: Response) => {

@@ -14,18 +14,18 @@ const getAllBookDB = async () => {
 
 //get Single book data in Database
 const getSingleBookDB = async (id: string) => {
-  const rsult = await Book.findOne({ id });
+  const rsult = await Book.findById(id);
   return rsult;
 };
 
 //deleted data in database
-const deletBookDB = async (id: string) => {
-  const rsult = await Book.deleteOne({ id });
-  return rsult;
+const deleteBookDB = async (id: string) => {
+  const rsult = await Book.findByIdAndDelete(id);
+  return rsult
 };
 
+//update data in database
 const updateBookBD = async (id: string, data: TBook) => {
-  // console.log(id,"id pachi");
   const result = await Book.findByIdAndUpdate(id, data, {
     new: true,
   });
@@ -36,6 +36,6 @@ export const BookService = {
   createBookIntoDB,
   getAllBookDB,
   getSingleBookDB,
-  deletBookDB,
+  deletBookDB: deleteBookDB,
   updateBookBD,
 };

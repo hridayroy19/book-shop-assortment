@@ -5,8 +5,8 @@ import bookValidationSchema from './book.validator';
 
 const createBook = async (req: Request, res: Response) => {
   try {
-    //validation zood
     const { book: bookdata } = req.body;
+        //validation zood shecma
     const zodparsData = bookValidationSchema.parse(bookdata);
     const rsult = await BookService.createBookIntoDB(zodparsData);
     res.status(200).json({
@@ -40,11 +40,11 @@ const getAllBook = async (req: Request, res: Response) => {
     });
   }
 };
-
+ // single book get by id
 const getSingleBook = async (req: Request, res: Response) => {
   try {
-    const { bookId } = req.params;
-    const result = await BookService.getSingleBookDB(bookId);
+    const productId  = req.params.productId 
+    const result = await BookService.getSingleBookDB(productId);
     res.status(200).json({
       success: true,
       message: 'Book data get succesfully',
@@ -58,15 +58,15 @@ const getSingleBook = async (req: Request, res: Response) => {
     });
   }
 };
-
+ //book deleted by id 
 const deletBook = async (req: Request, res: Response) => {
   try {
-    const { id } = req.params;
-    const result = await BookService.deletBookDB(id);
+    const { productId } = req.params;
+    const result = await BookService.deletBookDB(productId);
     res.status(200).json({
       success: true,
       message: 'Book succesfully deleted',
-      data: result,
+       result,
     });
   } catch (error) {
     res.status(500).json({
@@ -77,11 +77,12 @@ const deletBook = async (req: Request, res: Response) => {
   }
 };
 
+//book update by id
 const updateBook = async (req: Request, res: Response) => {
   try {
-    const bookId = req.params.bookId;
+    const productId = req.params.productId;
     const data = req.body;
-    const result = await BookService.updateBookBD(bookId, data);
+    const result = await BookService.updateBookBD(productId, data);
     res.status(200).json({
       success: true,
       message: 'Book Data succesfully Updated ',

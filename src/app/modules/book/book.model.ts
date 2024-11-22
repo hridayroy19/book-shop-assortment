@@ -42,15 +42,10 @@ const bookSchema = new Schema<TBook>({
     type: Boolean,
     default: true,
     require: [true, 'instock is require'],
-  },
-});
+  }
+}, {
+  timestamps: true,
+},);
 
-//static method
-
-// bookSchema.statics.isBookExists = async function (id: string) {
-//     const existsBook = await Book.findOne({ id })
-//     return existsBook
-
-// }
-
+ //book model
 export const Book = model<TBook>('book', bookSchema);
