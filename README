@@ -1,0 +1,55 @@
+<!-- Make sure to add a README file that explains how to set up and use the application. In the README, include details like the project name, live URL, features, technology used, and other important information. Try to make it look professional by doing some research and making it appealing. -->
+
+is projcet book shope here user cratea order and buy book;
+
+projcet Name: Book shop
+Live Url : https://book-shop-projcet.vercel.app/
+Deployment: Vercel
+
+Technology used :
+Backend Development
+Node.js
+Express.js
+Mongoose
+TypeScript,
+cors,
+MongoDB,
+Zod validation,
+ts-node-dev,
+prettier
+eslint
+
+features:
+Add New Book (Create)
+
+Allows adding new books to the database.
+View Book Details (Read)
+
+Retrieves details of books from the database.
+Update Book Information (Update)
+
+Modifies the information of an existing book.
+Delete Book (Delete)
+
+Removes a book from the database.
+
+Order:
+here user buy a book
+Revenue will be calculated based on the price of books sold and the quantity of each order.
+
+API Endpoints : Book create
+
+Method  	Endpoint	                  Description	
+POST	    /api/products	              Add a new book	
+GET	        /api/products	              Get all books	I
+GET	        /api/products/:productId      Get a single book by ID	
+PUT	        /api/products/:productId	  Update book details by ID	 
+DELETE	    /api/products/:productId	  Delete a book by ID
+
+API Endpoints : Order create
+ 
+Method  	Endpoint	                  Description	
+POST	    /api/orders	                  Add a new book
+GET		    /api/orders/revenue           Get all Revenue
+PUT	        /api/products/:productId	  Update book details by ID	 
+DELETE	    /api/products/:productId	  Delete a book by ID
