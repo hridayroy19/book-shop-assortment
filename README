@@ -39,17 +39,17 @@ Revenue will be calculated based on the price of books sold and the quantity of 
 
 API Endpoints : Book create
 
-Method  	Endpoint	                  Description	
-POST	    /api/products	              Add a new book	
+Method     	Endpoint	                  Description	
+POST	       /api/products	              Add a new book	
 GET	        /api/products	              Get all books	I
 GET	        /api/products/:productId      Get a single book by ID	
 PUT	        /api/products/:productId	  Update book details by ID	 
-DELETE	    /api/products/:productId	  Delete a book by ID
+DELETE	     /api/products/:productId	  Delete a book by ID
 
 API Endpoints : Order create
  
-Method  	Endpoint	                  Description	
-POST	    /api/orders	                  Add a new book
-GET		    /api/orders/revenue           Get all Revenue
-PUT	        /api/products/:productId	  Update book details by ID	 
-DELETE	    /api/products/:productId	  Delete a book by ID
+Method  	     Endpoint	                     Description	
+POST	        /api/orders	                   Add a new book
+GET		        /api/orders/revenue          Get all Revenue
+PUT	        /api/products/:productId	    Update book details by ID	 
+DELETE	     /api/products/:productId	     Delete a book by ID
