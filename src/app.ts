@@ -1,9 +1,11 @@
-import express, { Application, Request, Response } from 'express';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import express, { Application, NextFunction, Request, Response } from 'express';
 const app: Application = express();
 import cors from 'cors';
 import { BookRouter } from './app/modules/book/book.router';
 import orderRouter from './app/modules/order/order.router';
 import authRouter from './app/modules/auth/auth.router';
+import { StatusCodes } from 'http-status-codes';
 
 //perser
 app.use(express.json());
@@ -19,5 +21,15 @@ app.use('/api', orderRouter);
 app.get('/', (req: Request, res: Response) => {
   res.send('Server site is running');
 });
+
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any, no-unused-vars
+app.use((err: any, req: Request, res: Response, _next: NextFunction) => {
+  console.log('error from app.ts file', err)
+  res
+    .status(StatusCodes.INTERNAL_SERVER_ERROR)
+    .json({ success: false, message: err.message, error: err })
+})
+
 
 export default app;

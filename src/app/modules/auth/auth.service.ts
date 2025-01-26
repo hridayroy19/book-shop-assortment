@@ -8,9 +8,6 @@ const register = async (payload: Iuser) => {
 }
 
 
-
-
-
 export const authService = {
     register
 }
