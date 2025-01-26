@@ -29,13 +29,13 @@ Retrieves details of books from the database.
 Update Book Information (Update)
 
 Modifies the information of an existing book.
-Delete Book (Delete)
+Delete Book from database (Delete)
 
-Removes a book from the database.
 
 Order:
 here user buy a book
 Revenue will be calculated based on the price of books sold and the quantity of each order.
+
 
 API Endpoints : Book create
 

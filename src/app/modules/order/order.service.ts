@@ -3,18 +3,13 @@ import { TOrder } from './order.interface';
 import order from './order.model';
 
 const crateOrder = async (paylod: TOrder) => {
-  // const result = await order.create(paylod);
-  // return result;
+
   const { product, quantity } = paylod;
+  //fine id book
   const bookOrder = await Book.findById(product);
-  console.log(bookOrder, ' id resive');
-
-  if (!bookOrder) {
-    throw new Error('book not found');
-  }
-
-  if (!bookOrder.inStock || bookOrder.quantity < quantity) {
-    throw new Error('insufficient stock');
+  // console.log(bookOrder, ' id resive');
+  if (!bookOrder || bookOrder.quantity < quantity) {
+    throw new Error('Book Not Found or Insufficient Stock');
   }
 
   bookOrder.quantity -= quantity;
@@ -30,15 +25,16 @@ const crateOrder = async (paylod: TOrder) => {
 
 //get all revenue data
 const getOrder = async () => {
-  const result = await order.aggregate([
+  const data = await order.aggregate([
     {
       $group: {
         _id: null,
-        total: { $sum: '$totalPrice' },
+        totalRevenue: { $sum: '$totalPrice' },
       },
     },
+    { $project: { totalRevenue: 1, _id: 0 } },
   ]);
-  return result[0];
+  return data;
 };
 
 const allOrder = async () => {

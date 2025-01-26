@@ -29,7 +29,7 @@ const getOrder = async (req: Request, res: Response) => {
     });
   } catch (error) {
     res.json({
-      success: false,
+      status: false,
       message: 'somting went wrong',
       error,
     });
