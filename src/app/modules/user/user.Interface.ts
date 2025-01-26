@@ -3,7 +3,7 @@ export interface Iuser {
     name: string
     email: string
     passwrod: string
-    role: "user"
-    photo?: string
-    userStatus: string
-}
+    role: 'user' | 'admin'
+    photo?: string | null
+    userStatus: 'active' | 'inactive'
+} 
