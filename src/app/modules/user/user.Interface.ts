@@ -1,3 +1,4 @@
+import { USER_ROLE } from "./user.constants"
 
 export interface Iuser {
     name: string,
@@ -7,3 +8,5 @@ export interface Iuser {
     photo?: string | null,
     userStatus: 'active' | 'inactive'
 } 
+
+export type TUserRole = keyof typeof USER_ROLE

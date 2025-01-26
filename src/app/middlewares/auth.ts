@@ -1,10 +1,11 @@
 import { User } from './../modules/user/user.Model';
 import jwt, { JwtPayload } from 'jsonwebtoken';
 import catchAsync from "../utils/catchAsync"
+import { TUserRole } from '../modules/user/user.Interface';
 
 
 
-export const auth = (requireRole: string) => {
+export const auth = (...requiredRoles: TUserRole[])  => {
     return catchAsync(async (req, res, next) => {
 
         const token = req.headers.authorization;
@@ -23,9 +24,15 @@ export const auth = (requireRole: string) => {
             throw new Error("Your are not found")
         }
 
-        if (requireRole !== role) {
-            throw new Error("Your are not authorized")
+        const userStatus = user?.userStatus
+
+        if (userStatus === 'inactive') {
+          throw new Error('This user is blocked ! !')
         }
+
+        if (requiredRoles && !requiredRoles.includes(role)) {
+            throw new Error('You are not authorized')
+          }
 
         req.user = decoded as JwtPayload
         next()
