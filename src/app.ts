@@ -6,6 +6,7 @@ import { BookRouter } from './app/modules/book/book.router';
 import orderRouter from './app/modules/order/order.router';
 import authRouter from './app/modules/auth/auth.router';
 import { StatusCodes } from 'http-status-codes';
+import cartRouter from './app/modules/addCartd/cart.route';
 
 //perser
 app.use(express.json());
@@ -16,6 +17,7 @@ app.use('/api/auth', authRouter);
 //book router
 app.use('/api/products', BookRouter);
 //order router
+app.use('/api/cart',cartRouter);
 app.use('/api', orderRouter);
 
 app.get('/', (req: Request, res: Response) => {

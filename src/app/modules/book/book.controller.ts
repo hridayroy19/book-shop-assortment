@@ -1,13 +1,12 @@
 import { Request, Response } from 'express';
 import { BookService } from './book.server';
-import bookValidationSchema from './book.validator';
+// import bookValidationSchema from './book.validator';
 
 const createBook = async (req: Request, res: Response) => {
   try {
     //validation zood shema
     const bookdata = req.body;
-    const zodparsData = bookValidationSchema.parse(bookdata);
-    const rsult = await BookService.createBookIntoDB(zodparsData);
+    const rsult = await BookService.createBookIntoDB(bookdata);
     res.status(200).json({
       success: true,
       message: 'Book data crated succesfully',
@@ -46,7 +45,7 @@ const getSingleBook = async (req: Request, res: Response) => {
     const result = await BookService.getSingleBookDB(productId);
     res.status(200).json({
       status: true,
-      message: 'Book retrieved successfully',
+      message: 'Book get successfully',
       data: result,
     });
   } catch (error) {

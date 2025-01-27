@@ -6,50 +6,59 @@ const bookSchema = new Schema<TBook>(
   {
     title: {
       type: String,
-      require: [true, 'title is require'],
+      required: [true, 'Title is required'],
       trim: true,
+      unique:true
     },
     author: {
       type: String,
-      require: [true, 'Price is require'],
+      required: [true, 'Author is required'],
+      trim: true,
     },
     price: {
       type: Number,
-      require: [true, 'Price is require'],
+      required: [true, 'Price is required'],
+      min: [0, 'Price must be a positive number'],
     },
     category: {
       type: String,
-      required: true,
-      enum: {
-        values: [
-          'Fiction',
-          'Science',
-          'SelfDevelopment',
-          'Poetry',
-          'Religious',
-        ],
-        message: '{VALUE} is not valid',
-      },
+      required: [true, 'Category is required'],
+      trim: true,
+    },
+    image: {
+      type: String,
+      default: '',
     },
     description: {
-      trim: true,
       type: String,
-      min: 0,
-      required: [true, 'desctiption is require'],
+      required: [true, 'Description is required'],
+      minLength: [10, 'Description must be at least 10 characters'],
+      trim: true,
     },
     quantity: {
       type: Number,
-      require: [true, 'quantity is require'],
+      required: [true, 'Quantity is required'],
+      min: [0, 'Quantity must be a non-negative number'],
     },
     inStock: {
       type: Boolean,
-      require: false,
+      default: true,
+    },
+    rating: {
+      type: Number,
+      min: [0, 'Rating must be a number between 0 and 5'],
+      max: [5, 'Rating must be a number between 0 and 5'],
+      default: 0, 
+    },
+    discount: {
+      type: Number,
+      min: [0, 'Discount must be a positive number'],
+      default: 0, 
     },
   },
   {
-    timestamps: true,
-  },
+    timestamps: true, 
+  }
 );
-
 //book model
 export const Book = model<TBook>('book', bookSchema);
