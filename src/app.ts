@@ -10,7 +10,7 @@ import cartRouter from './app/modules/addCartd/cart.route';
 
 //perser
 app.use(express.json());
-app.use(cors());
+app.use(cors({credentials:true}));
 
 
 app.use('/api/auth', authRouter);
