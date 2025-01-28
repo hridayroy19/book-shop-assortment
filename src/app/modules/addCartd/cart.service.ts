@@ -6,9 +6,14 @@ const crateOrder = async (paylod: TCart) => {
   return result;
 };
 
-const getcartItem = async () => {
-  const result = await cart.find();
-  // console.log(result)
+// const getcartItem = async () => {
+//   const result = await cart.find();
+//   // console.log(result)
+//   return result;
+// };
+
+const getcartItem = async (email:string) => {
+  const result = await cart.find({ userEmail: email }); // Filter cart items by userEmail
   return result;
 };
 
