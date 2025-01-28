@@ -27,9 +27,24 @@ const login = catchAsync(async (req, res) => {
     })
 })
 
+const logOut= catchAsync(async (req, res) => {
 
+    res.clearCookie('token', {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'strict',
+      });
+    
+      // Send response
+      sendResponse(res, {
+        statusCode: StatusCodes.ACCEPTED,
+        status: true,
+        message: "User Logout Successfull",
+      });
+    });
 
 export const authController = {
     register,
-    login
+    login,
+    logOut
 }

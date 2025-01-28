@@ -7,7 +7,16 @@ const crateOrder = async (paylod:TCart) => {
     return result;
   };
 
+//get all book data in Database
+const getcartItem = async () => {
+  const result = await cart.find();
+  console.log(result);
+  
+  return result;
+};
+
 
   export const cartService = {
     crateOrder,
+    getcartItem
   }

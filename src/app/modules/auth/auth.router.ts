@@ -9,5 +9,6 @@ const authRouter = Router()
 
 authRouter.post("/register", validateRequest(UserValidation.userValidationSchema), authController.register)
 authRouter.post("/login", validateRequest(AuthValidation.loginValidationSchema), authController.login)
+authRouter.post("/logout",authController.logOut)
 
 export default authRouter;
