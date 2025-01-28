@@ -24,7 +24,5 @@ const cartSchema = new Schema(
   },
 );
 
-// export const OrderModel = model<TOrder>('order', orderSchema);
-
 const cart = model('cartOrder', cartSchema);
 export default cart;

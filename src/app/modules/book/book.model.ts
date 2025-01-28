@@ -8,7 +8,7 @@ const bookSchema = new Schema<TBook>(
       type: String,
       required: [true, 'Title is required'],
       trim: true,
-      unique:true
+      unique: true,
     },
     author: {
       type: String,
@@ -48,17 +48,17 @@ const bookSchema = new Schema<TBook>(
       type: Number,
       min: [0, 'Rating must be a number between 0 and 5'],
       max: [5, 'Rating must be a number between 0 and 5'],
-      default: 0, 
+      default: 0,
     },
     discount: {
       type: Number,
       min: [0, 'Discount must be a positive number'],
-      default: 0, 
+      default: 0,
     },
   },
   {
-    timestamps: true, 
-  }
+    timestamps: true,
+  },
 );
 //book model
 export const Book = model<TBook>('book', bookSchema);

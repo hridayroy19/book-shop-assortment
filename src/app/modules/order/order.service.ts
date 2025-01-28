@@ -3,7 +3,6 @@ import { TOrder } from './order.interface';
 import order from './order.model';
 
 const crateOrder = async (paylod: TOrder) => {
-
   const { product, quantity } = paylod;
   //fine id book
   const bookOrder = await Book.findById(product);

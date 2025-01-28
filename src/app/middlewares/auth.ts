@@ -1,40 +1,37 @@
 import { User } from './../modules/user/user.Model';
 import jwt, { JwtPayload } from 'jsonwebtoken';
-import catchAsync from "../utils/catchAsync"
+import catchAsync from '../utils/catchAsync';
 import { TUserRole } from '../modules/user/user.Interface';
 
+export const auth = (...requiredRoles: TUserRole[]) => {
+  return catchAsync(async (req, res, next) => {
+    const token = req.headers.authorization;
 
+    if (!token) {
+      throw new Error('Your are not Authorized');
+    }
 
-export const auth = (...requiredRoles: TUserRole[])  => {
-    return catchAsync(async (req, res, next) => {
+    const decoded = jwt.verify(token, 'secrect') as JwtPayload;
 
-        const token = req.headers.authorization;
+    const { email, role } = decoded;
 
-        if (!token) {
-            throw new Error("Your are not Authorized")
-        }
+    const user = await User.findOne({ email });
 
-        const decoded = jwt.verify(token, "secrect") as JwtPayload;
+    if (!user) {
+      throw new Error('Your are not found');
+    }
 
-        const { email, role } = decoded
+    const userStatus = user?.userStatus;
 
-        const user = await User.findOne({ email })
+    if (userStatus === 'inactive') {
+      throw new Error('This user is blocked ! !');
+    }
 
-        if (!user) {
-            throw new Error("Your are not found")
-        }
+    if (requiredRoles && !requiredRoles.includes(role)) {
+      throw new Error('You are not authorized');
+    }
 
-        const userStatus = user?.userStatus
-
-        if (userStatus === 'inactive') {
-          throw new Error('This user is blocked ! !')
-        }
-
-        if (requiredRoles && !requiredRoles.includes(role)) {
-            throw new Error('You are not authorized')
-          }
-
-        req.user = decoded as JwtPayload
-        next()
-    })
-}
+    req.user = decoded as JwtPayload;
+    next();
+  });
+};

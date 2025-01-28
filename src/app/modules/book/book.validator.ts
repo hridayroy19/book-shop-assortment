@@ -9,9 +9,9 @@ export const bookValidationSchema = z.object({
   category: z.string().min(1, 'Category is required.'),
   description: z.string().min(1, 'Description is required.').trim(),
   discount: z.number().optional(),
-  rating:z.number().optional(),
+  rating: z.number().optional(),
   quantity: z.number().nonnegative('Quantity must be a non-negative number.'),
-  inStock: z.boolean().default(true),  
+  inStock: z.boolean().default(true),
 });
 
 export default bookValidationSchema;

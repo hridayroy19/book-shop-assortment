@@ -1,52 +1,50 @@
-import { StatusCodes } from "http-status-codes";
-import catchAsync from "../../utils/catchAsync";
-import sendResponse from "../../utils/sendResponse";
-import { cartService } from "./cart.service";
+import { StatusCodes } from 'http-status-codes';
+import catchAsync from '../../utils/catchAsync';
+import sendResponse from '../../utils/sendResponse';
+import { cartService } from './cart.service';
 
 const cartOrder = catchAsync(async (req, res) => {
+  const result = await cartService.crateOrder(req.body);
+  // console.log(result);
 
-    const result = await cartService.crateOrder(req.body)
-    // console.log(result);
-
-
-    sendResponse(res, {
-        statusCode: StatusCodes.CREATED,
-        status: true,
-        message: "Order Create Successfull",
-        data: result
-    })
-})
+  sendResponse(res, {
+    statusCode: StatusCodes.CREATED,
+    status: true,
+    message: 'Order Create Successfull',
+    data: result,
+  });
+});
 
 const cartOrderGet = catchAsync(async (req, res) => {
-    const result = await cartService.getcartItem()
-    // console.log(result);
-    sendResponse(res, {
-        statusCode: StatusCodes.ACCEPTED,
-        status: true,
-        message: "Cart Order get Successfull",
-        data: result
-    })
-})
+  // const email = req.query.email;
+  // if(!email){
+  //     throw new Error()
+  // }
+  const result = await cartService.getcartItem();
+  // console.log(result);
+  sendResponse(res, {
+    statusCode: StatusCodes.ACCEPTED,
+    status: true,
+    message: 'Cart Order get Successfull',
+    data: result,
+  });
+});
 
 const deletCart = catchAsync(async (req, res) => {
-    const id = req.params.id;
-    console.log(id ,"id");
-    
-    const result = await cartService.deleteCart(id);
-    sendResponse(res, {
-        statusCode: StatusCodes.ACCEPTED,
-        status: true,
-        message: "Cart deleted Successfull",
-        data: result
-    })
-})
+  const id = req.params.id;
+  console.log(id, 'id');
 
-
-
-
+  const result = await cartService.deleteCart(id);
+  sendResponse(res, {
+    statusCode: StatusCodes.ACCEPTED,
+    status: true,
+    message: 'Cart deleted Successfull',
+    data: result,
+  });
+});
 
 export const cartController = {
-    cartOrder,
-    cartOrderGet,
-    deletCart,
-}
+  cartOrder,
+  cartOrderGet,
+  deletCart,
+};
