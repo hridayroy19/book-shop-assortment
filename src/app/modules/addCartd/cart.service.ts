@@ -1,3 +1,4 @@
+
 import cart from './cart.model';
 import { TCart } from './cartInterface';
 
@@ -18,12 +19,12 @@ const getcartItem = async (email:string) => {
 };
 
 //deleted data in database
-const deleteCart = async (id: string) => {
+const deleteCart = async (id:string) => {
   const result = await cart.findByIdAndDelete(id);
-  // console.log(result,"resutl");
-
+  console.log(result , "find by id" )
   return result;
 };
+
 
 export const cartService = {
   crateOrder,

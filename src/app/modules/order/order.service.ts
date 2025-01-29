@@ -1,26 +1,13 @@
-import { Book } from '../book/book.model';
 import { TOrder } from './order.interface';
 import order from './order.model';
 
-const crateOrder = async (paylod: TOrder) => {
-  const { product, quantity } = paylod;
-  //fine id book
-  const bookOrder = await Book.findById(product);
-  // console.log(bookOrder, ' id resive');
-  if (!bookOrder || bookOrder.quantity < quantity) {
-    throw new Error('Book Not Found or Insufficient Stock');
-  }
-
-  bookOrder.quantity -= quantity;
-  if (bookOrder.quantity === 0) {
-    bookOrder.inStock = false;
-  }
-  await bookOrder.save();
-
+const crateOrderIntoDb = async (paylod: TOrder) => {
   const result = await order.create(paylod);
-  // console.log(result);
+  console.log(result);
   return result;
 };
+
+
 
 //get all revenue data
 const getOrder = async () => {
@@ -59,7 +46,7 @@ const deletOrder = async (id: string) => {
 };
 
 export const OrderServer = {
-  crateOrder,
+  crateOrderIntoDb,
   getOrder,
   singleOrder,
   orderUpdate,

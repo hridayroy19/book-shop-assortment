@@ -1,23 +1,23 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+ 
 import { Request, Response } from 'express';
 import { OrderServer } from './order.service';
+import catchAsync from '../../utils/catchAsync';
+import sendResponse from '../../utils/sendResponse';
+import { StatusCodes } from 'http-status-codes';
 
-const crateOrder = async (req: Request, res: Response) => {
-  try {
-    const body = req.body;
-    const result = await OrderServer.crateOrder(body);
-    res.json({
-      status: true,
-      message: ' Order crated successfully',
-      data: result,
-    });
-  } catch (error: any) {
-    res.json({
-      status: false,
-      message: error.message || 'Something went wrong',
-    });
-  }
-};
+
+
+const crateOrder = catchAsync(async (req, res) => {
+  const result = await OrderServer.crateOrderIntoDb(req.body);
+
+  sendResponse(res, {
+    statusCode: StatusCodes.CREATED,
+    status: true,
+    message: 'Order Create Successfull',
+    data: result,
+  });
+});
+
 
 const getOrder = async (req: Request, res: Response) => {
   try {

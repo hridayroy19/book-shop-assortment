@@ -50,7 +50,6 @@ const cartOrderGet = catchAsync(async (req, res) => {
 
 const deletCart = catchAsync(async (req, res) => {
   const id = req.params.id;
-  console.log(id, 'id');
 
   const result = await cartService.deleteCart(id);
   sendResponse(res, {
