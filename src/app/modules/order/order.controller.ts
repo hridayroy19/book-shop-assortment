@@ -1,11 +1,8 @@
- 
 import { Request, Response } from 'express';
 import { OrderServer } from './order.service';
 import catchAsync from '../../utils/catchAsync';
 import sendResponse from '../../utils/sendResponse';
 import { StatusCodes } from 'http-status-codes';
-
-
 
 const crateOrder = catchAsync(async (req, res) => {
   const result = await OrderServer.crateOrderIntoDb(req.body);
@@ -18,10 +15,15 @@ const crateOrder = catchAsync(async (req, res) => {
   });
 });
 
-
 const getOrder = async (req: Request, res: Response) => {
+  const email = req.query.email;
+
+  // Ensure email is a string
+  if (typeof email !== 'string' || !email) {
+    throw new Error('Email is required and must be a valid string');
+  }
   try {
-    const result = await OrderServer.getOrder();
+    const result = await OrderServer.allOrder(email);
     res.json({
       status: true,
       message: ' Revenue calculated successfully',

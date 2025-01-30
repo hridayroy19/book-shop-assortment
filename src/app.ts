@@ -7,20 +7,25 @@ import orderRouter from './app/modules/order/order.router';
 import authRouter from './app/modules/auth/auth.router';
 import { StatusCodes } from 'http-status-codes';
 import cartRouter from './app/modules/addCartd/cart.route';
-import paymentrouter from './app/modules/payments/payment.routes';
+// import paymentrouter from './app/modules/payments/payment.routes';
+import userRouter from './app/modules/user/user.routes';
+import paymentRouter from './app/modules/payments/paymentRouter';
+// import paymentRouter from './app/modules/payments/paymentRouter';
+// import paymentrouter from './app/modules/payments/payment.routes';
 
 //perser
 app.use(express.json());
 app.use(cors({ credentials: true }));
 
 app.use('/api/auth', authRouter);
+app.use('/api/user', userRouter);
 //book router
 app.use('/api/products', BookRouter);
 //order router
 app.use('/api/cart', cartRouter);
 app.use('/api/order', orderRouter);
-app.use('/api', paymentrouter);
-
+app.use('/api', paymentRouter);
+// app.use('/api', paymentRouter);
 
 app.get('/', (req: Request, res: Response) => {
   res.send('Server site is running');

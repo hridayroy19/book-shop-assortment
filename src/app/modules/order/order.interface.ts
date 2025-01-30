@@ -11,12 +11,12 @@
 export type TCart = {
   productId: string;
   title: string;
-  price:string;
+  price: string;
   image: string;
-  userEmail:string;
-  paidStatus:boolean;
-  totalAmount:string
-  transaction:string
+  userEmail: string;
+  paidStatus: boolean;
+  totalAmount: string;
+  transaction: string;
   createdAt?: Date;
   updatedAt?: Date;
 };

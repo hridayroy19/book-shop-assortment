@@ -5,6 +5,8 @@ import { Book } from './book.model';
 
 const createBookIntoDB = async (book: TBook) => {
   const result = await Book.create(book);
+  // console.log(result,"service");
+
   return result;
 };
 

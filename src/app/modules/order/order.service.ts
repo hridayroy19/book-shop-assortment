@@ -1,13 +1,12 @@
-import { TOrder } from './order.interface';
+
+import { TCart } from './order.interface';
 import order from './order.model';
 
-const crateOrderIntoDb = async (paylod: TOrder) => {
+const crateOrderIntoDb = async (paylod: TCart) => {
   const result = await order.create(paylod);
-  console.log(result);
+  // console.log(result);
   return result;
 };
-
-
 
 //get all revenue data
 const getOrder = async () => {
@@ -23,8 +22,8 @@ const getOrder = async () => {
   return data;
 };
 
-const allOrder = async () => {
-  const result = await order.find();
+const allOrder = async (email: string) => {
+  const result = await order.find({ userEmail: email });
   return result;
 };
 
@@ -33,7 +32,7 @@ const singleOrder = async (id: string) => {
   return result;
 };
 
-const orderUpdate = async (id: string, paylod: TOrder) => {
+const orderUpdate = async (id: string, paylod: TCart) => {
   const result = await order.findByIdAndUpdate(id, paylod, {
     new: true,
   });

@@ -7,9 +7,9 @@ import { StatusCodes } from 'http-status-codes';
 
 const createBook = async (req: Request, res: Response) => {
   try {
-    //validation zood shema
-    const bookdata = req.body;
-    const rsult = await BookService.createBookIntoDB(bookdata);
+    //  console.log(req.body);
+
+    const rsult = await BookService.createBookIntoDB(req.body);
     res.status(200).json({
       success: true,
       message: 'Book data crated succesfully',

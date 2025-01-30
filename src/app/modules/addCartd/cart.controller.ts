@@ -47,7 +47,6 @@ const cartOrderGet = catchAsync(async (req, res) => {
   });
 });
 
-
 const deletCart = catchAsync(async (req, res) => {
   const id = req.params.id;
 

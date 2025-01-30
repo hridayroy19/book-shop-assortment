@@ -1,24 +1,18 @@
 import { z } from 'zod';
 
 const userValidationSchema = z.object({
-  name: z
-    .string({
-      required_error: 'Name must be provided and must be a string',
-    })
-    .min(3, { message: 'Name must be at least 3 characters long' })
-    .max(40, { message: 'Name must not exceed 40 characters' }),
-
+  name: z.string({
+    required_error: 'Name must be provided and must be a string',
+  }),
   email: z
     .string({
       required_error: 'Email must be provided and must be a string',
     })
     .email({ message: 'Invalid email address' }),
 
-  password: z
-    .string({
-      required_error: 'Password is required for your safety',
-    })
-    .max(20, { message: 'Password cannot exceed 20 characters' }),
+  password: z.string({
+    required_error: 'Password is required for your safety',
+  }),
 
   photo: z.string().optional().default(''),
 

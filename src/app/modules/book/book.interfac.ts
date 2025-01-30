@@ -8,7 +8,7 @@ export type TBook = {
   image: string;
   description: string;
   quantity: number;
-  inStock: boolean;
+  inStock?: boolean;
   rating?: number;
   discount?: number;
   createdAt?: Date;
