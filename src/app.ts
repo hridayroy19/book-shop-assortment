@@ -23,7 +23,6 @@ app.use('/api/products', BookRouter);
 app.use('/api/cart', cartRouter);
 app.use('/api/order', orderRouter);
 app.use('/api', paymentRouter);
-// app.use('/api', paymentRouter);
 
 app.get('/', (req: Request, res: Response) => {
   res.send('Server site is running');
