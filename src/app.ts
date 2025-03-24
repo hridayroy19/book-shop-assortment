@@ -7,13 +7,11 @@ import orderRouter from './app/modules/order/order.router';
 import authRouter from './app/modules/auth/auth.router';
 import { StatusCodes } from 'http-status-codes';
 import cartRouter from './app/modules/addCartd/cart.route';
-// import paymentrouter from './app/modules/payments/payment.routes';
 import userRouter from './app/modules/user/user.routes';
 import paymentRouter from './app/modules/payments/paymentRouter';
-// import paymentRouter from './app/modules/payments/paymentRouter';
-// import paymentrouter from './app/modules/payments/payment.routes';
 
-//perser
+
+//perser code update
 app.use(express.json());
 app.use(cors({ credentials: true }));
 
